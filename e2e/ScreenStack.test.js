@@ -69,24 +69,9 @@ describe('screen stack', () => {
     await expect(elementByLabel('Screen 1')).toBeVisible();
   });
 
-  it(':ios: push native component with options', async () => {
-    await elementById(testIDs.PUSH_NATIVE_COMPONENT_BUTTON).tap();
-    await expect(elementById('TestLabel')).toBeVisible();
+  it(':android: push external component with options', async () => {
+    await elementById(testIDs.PUSH_EXTERNAL_COMPONENT_BUTTON).tap();
+    await expect(elementByLabel('This is an external component')).toBeVisible();
     await expect(elementById(testIDs.TOP_BAR_ELEMENT)).toBeVisible();
-  });
-
-  it(':android: override hardware back button', async () => {
-    await elementByLabel('BACK HANDLER').tap();
-    await expect(elementByLabel('Back Handler Screen')).toBeVisible();
-
-    await elementByLabel('ADD BACK HANDLER').tap();
-    Android.pressBack();
-    await sleep(100);
-    await expect(elementByLabel('Back Handler Screen')).toBeVisible();
-
-    await elementByLabel('REMOVE BACK HANDLER').tap();
-    Android.pressBack();
-    await sleep(100);
-    await expect(elementByLabel('React Native Navigation!')).toBeVisible();
   });
 });
